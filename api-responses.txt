@@ -1,0 +1,18 @@
+GET /task/1
+{
+  "id": 1,
+  "title": "Learn Node.js",
+  "completed": false,
+  "priority": "high",
+  "createdAt": "2025-11-04T04:23:12.345Z"
+}
+
+GET /task/999
+{
+  "error": "Task not found"
+}
+
+GET /task/abc
+{
+  "error": "Invalid ID format"
+}

@@ -27,6 +27,27 @@ app.get('/health', (req, res) => {
     uptime: process.uptime()  // returns server uptime in seconds
   });
 });
+// GET /task/:id route
+app.get('/task/:id', (req, res) => {
+  const id = parseInt(req.params.id);  // get ID from URL and convert to number
+
+  // Check if id is a valid number
+  if (isNaN(id)) {
+    return res.status(400).json({ error: "Invalid ID format" });
+  }
+
+  // Find task by ID
+  const task = tasks.find(t => t.id === id);
+
+  // If task not found, return 404
+  if (!task) {
+    return res.status(404).json({ error: "Task not found" });
+  }
+
+  // If task found, return it
+  res.json(task);
+});
+
 
 
 // Start the server
